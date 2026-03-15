@@ -1,3 +1,18 @@
+"""
+Non-Parametric Method: Mixed Weighted Kernel Smoothing
+
+Data pipeline ensures consistency with the structural framework:
+Loads original UCI HAR Dataset train/test SEPARATELY (X_train, y_train, X_test, y_test).
+Implements Step-3 systematic sampling independently on each split to preserve temporal gait structures.
+Bandwidth and feature weights are optimized strictly on the sampled training set.
+Standardizes continuous features using training set parameters (Mean=0, Var=1).
+
+Weighted kernel:
+Heterogeneous Distance Metric: Utilizes a composite distance function to handle mixed-type data (Continuous and Categorical).
+Implements a "Soft-Attention" mechanism where each feature is assigned an importance weight $\omega_j$
+Optimizes a global smoothing parameter $h$ to navigate the bias-variance trade-off; preventing "metric collapse" in high-dimensional space.
+"""
+
 import numpy as np
 import pandas as pd
 import time
